@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#eae7df" />
+    <meta
+      name="description"
+      content="翻动一本书，打开不同世界。Paper Worlds 互动立体书。"
+    />
+    <title>Paper Worlds — 打开不同世界</title>
+  </head>
+  <body>
+    <div id="app">
+      <main>
+        <button id="contents" class="fullscreen-contents" aria-label="打开目录">☷</button>
+        <div id="stage" aria-label="互动立体书，拖动翻页或使用左右方向键">
+          <div id="athlete-hotspots" aria-label="人物与小书交互"><button id="alice-ring" class="athlete-ring" aria-label="听爱丽丝说话" hidden></button><button id="mini-ring" class="athlete-ring" aria-label="点击阅读书中小书" hidden></button></div>
+          <button id="coffin-ring" class="athlete-ring" aria-label="俯看棺椁" hidden></button>
+          <div id="loading">正在展开纸上的世界…</div>
+          <div id="runtime-status" hidden role="status"><p></p><button id="runtime-retry">重新打开</button></div>
+        </div>
+        <button id="coffin-exit" hidden>↗ 返回全景</button>
+        <aside id="mummy-menu" hidden aria-label="木乃伊彩蛋">
+          <small>纸页里的小彩蛋</small><h2>谁，唤醒了我？</h2>
+          <p id="mummy-response" aria-live="polite">三千年的午睡，刚刚被你打断。</p>
+          <button id="mummy-who">你是谁？</button><button id="mummy-secret">绷带里有什么？</button><button id="mummy-sleep">继续沉睡</button>
+          <button id="mummy-mute" aria-pressed="false">声音 · 开</button>
+        </aside>
+        <div id="gesture"><span>↔</span> 按住封面，向左缓缓展开</div>
+        <div class="controls">
+          <button id="prev" aria-label="上一页">←</button
+          ><span id="pagination">封面 <i>/</i> Paper Worlds</span
+          ><button id="next" aria-label="下一页">→</button>
+        </div>
+        <div class="tools">
+          <button id="sound-toggle" aria-label="开启音乐和音效" aria-pressed="false">♫ 开启声音</button>
+          <button id="front-view" title="回到正面">⊙ <span>回正</span></button><button id="reset" title="合上书本">↺ <span>重新翻阅</span></button
+          ><button id="focus" title="切换近景">⤢ <span>近些看</span></button>
+        </div>
+        <div id="mechanisms" hidden>
+          <button id="flap">◇ 揭开一扇窗</button
+          ><button id="light">☼ 点亮这座城</button
+          ><button id="read">阅读纸页 ↗</button>
+        </div>
+        <label id="ice-fold" hidden>
+          <span>纸艺展开 <output id="ice-percent">100%</output></span>
+          <input id="ice-progress" type="range" min="0" max="100" value="100" aria-label="冰雪纸艺展开程度" />
+          <small>合拢 <span>展开</span></small>
+        </label>
+        <div id="mini-controls" hidden>
+          <span>书中小书 <output id="mini-state">合拢</output></span>
+          <div><button id="mini-prev" aria-label="小书上一页">←</button><button id="mini-next" aria-label="小书下一页">打开 / 翻页 →</button></div>
+          <small>轻点封皮拉近俯看，再点或拖纸页翻阅</small>
+          <button id="mini-exit" hidden>退出阅读视角 ↗</button>
+        </div>
+        <label id="ice-pull" hidden>
+          <span><span id="pull-name">抽拉运动员</span> <output id="pull-percent">0%</output></span>
+          <input id="pull-progress" type="range" min="0" max="100" value="0" aria-label="主角抽拉位置" />
+          <small id="pull-hint">也可按住人物上下拖动</small>
+        </label>
+      </main>
+      <dialog id="index-dialog">
+        <button class="close" aria-label="关闭目录">×</button>
+        <div class="eyebrow">WORLDS TO EXPLORE</div>
+        <h2>世界的目录</h2>
+        <p>每一次翻页，都是一次抵达。</p>
+        <div id="index-items"></div>
+        <small>本册为交互原型。主题、日期与文字均为示例，非已核实新闻。</small>
+      </dialog>
+      <dialog id="detail">
+        <button class="close" aria-label="关闭详情">×</button>
+        <div class="eyebrow" id="detail-date"></div>
+        <h2 id="detail-title"></h2>
+        <div class="paper-illustration">⌂ <span>一座城，一页纸。</span></div>
+        <p id="detail-content"></p>
+        <small>纸艺交互样板 · 示例内容，非真实新闻报道</small>
+      </dialog>
+      <aside id="athlete-card" role="dialog" aria-modal="false" aria-labelledby="athlete-name" hidden>
+        <button class="close" aria-label="关闭人物介绍">×</button>
+        <div class="eyebrow">冰上人物 · FIGURE SKATING</div>
+        <h2 id="athlete-name"></h2><p id="athlete-discipline"></p>
+        <div id="athlete-result"></div>
+      </aside>
+      <aside id="alice-dialogue" hidden aria-live="polite"><p>Who in the world am I?</p></aside>
+      <div id="toast" role="status"></div>
+    </div>
+    <link rel="stylesheet" href="./app.css" />
+    <script src="./app.js"></script>
+  </body>
+</html>
